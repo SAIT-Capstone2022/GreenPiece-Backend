@@ -6,7 +6,6 @@ const sendEmail = require('../utils/sendEmail');
 const Joi = require('joi');
 const passwordComplexity = require('joi-password-complexity')
 const bcrypt = require('bcrypt');
-const { useDeferredValue } = require('react');
 const token = require('../models/token');
 
 
