@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 				await sendEmail(user.email, "Verify Email", url);
 			}
 
-			const url = `${process.env.BASE_URL}/users/${user.id}/verify/${token}`;
+			const url = `${process.env.BASE_URL}/users/${user.id}/verify/${token.token}`;
 				await sendEmail(user.email, "Verify Email", url);
 
 			return res
