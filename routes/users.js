@@ -9,7 +9,6 @@ const crypto = require('crypto')
 router.post("/", async (req, res) => {
 	try {
 		const { error } = validate(req.body);
-		console.log(req.body);
 		if (error)
 			//  console.log(error);
 			return res.status(400).send({ message: error.details[0].message });
@@ -78,7 +77,7 @@ router.post("/profile-update", async (req, res) => {
 		res.status(400).send({ message: "User Error Problem" });
 	};
 
-	await User.updateOne({ _id: post._id }, { username: post.username, password: post.password, phonenumber: post.phonenumber, city: post.city });
+	await User.updateOne({ _id: post._id }, { username: post.username, password: post.password, phonenumber: post.phonenumber , city: post.city});
 
 	const user = await User.findOne({ _id: post._id });
 
@@ -105,17 +104,16 @@ router.post("/water-update", async (req, res) => {
 router.post("/GreenhouseAlertValues", async (req, res) => {
 
 	const user = await User.findOneAndUpdate({ _id: req.body._id }, {
-		prefMaxTemp: req.body.prefMaxTemp, prefMinTemp: req.body.prefMinTemp,
-		prefMaxHumidity: req.body.prefMaxHumidity, prefMinHumidity: req.body.prefMinHumidity,
-		prefMaxMoisture: req.body.prefMaxMoisture, prefMinMoisture: req.body.prefMinMoisture
-	}, {
-		returnDocument: "after"
-	}
-	);
+		 prefMaxTemp: req.body.prefMaxTemp, prefMinTemp: req.body.prefMinTemp, 
+			prefMaxHumidity: req.body.prefMaxHumidity, prefMinHumidity: req.body.prefMinHumidity,
+			prefMaxMoisture: req.body.prefMaxMoisture, prefMinMoisture: req.body.prefMinMoisture}, {
+				returnDocument: "after"
+			}
+		);
 
+	
 
-
-	res.status(201).send({ message: "Successfully updated prefered alert values.", user: user });
+	res.status(201).send({ message: "Successfully updated prefered alert values.", user: user  });
 });
 
 module.exports = router;

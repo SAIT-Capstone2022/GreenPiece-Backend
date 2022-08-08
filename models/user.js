@@ -32,7 +32,6 @@ const userSchema = new Schema({
 
     city: {
         type: String,
-        require: true,
         trim: true,
     },
 
@@ -104,9 +103,7 @@ const validate = (data) => {
         password: passwordComplexity().required().label("Password"),
         username: joi.string().required().label("Username"),
         phonenumber: joi.string().required().label("Phone Number"),
-        city: joi.string().required().label("City"),
     });
-    console.log(schema.validate(data));
     return schema.validate(data);
 };
 
