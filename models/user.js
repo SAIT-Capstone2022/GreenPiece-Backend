@@ -30,6 +30,12 @@ const userSchema = new Schema({
         minlength: 3
     },
 
+    phonenumber: {
+        type: String,
+        require: true,
+        unique: false
+    },
+
     city: {
         type: String,
         trim: true,
