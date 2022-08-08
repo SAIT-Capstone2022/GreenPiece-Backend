@@ -103,6 +103,7 @@ const validate = (data) => {
         password: passwordComplexity().required().label("Password"),
         username: joi.string().required().label("Username"),
         phonenumber: joi.string().required().label("Phone Number"),
+        city: joi.string().required().label("City")
     });
     return schema.validate(data);
 };
