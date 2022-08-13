@@ -51,24 +51,6 @@ const startAlertTask = () => {
           sendEmail(email, "Moisture Alert!", `${alert} was alerted to be ${alertValue} at ${new Date().toString()}`);
         }
 
-        /*if (!alert) return;
-        let index;
-        const foundAlert = alerts.find(({type}, i) => {
-          index = i;
-          return type === alert;
-        }); 
-        if (foundAlert) {
-          const date = new Date(foundAlert.date);
-          if (date.getHours() < (new Date().getHours() - 3)) {
-            delete alerts[i];
-            alerts.push({
-              date: new Date().toISOString(),
-              type: alert,
-              message: `${alert} was alerted to be ${alertValue} at ${new Date().toString()}`
-            });
-          }
-        }*/
-
         console.log("Check");
 
       });
@@ -77,10 +59,19 @@ const startAlertTask = () => {
 }
 
 connection.once('open', () => { 
-
+  
+  /*Server function grave yard
+  
+  -------------------------------------------------------------------------------------------------
+  Alert functionality component, uncomment startAlertTask(); to get email alerts working again.
   startAlertTask();
+  -------------------------------------------------------------------------------------------------
 
-   /* User.find({}, (err, users) => {
+
+
+  --------------------------------------------------------------------------------------------------
+  Create large datapoint history insert function, very useful for demoing the graphs
+   User.find({}, (err, users) => {
 
     function getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -112,36 +103,8 @@ connection.once('open', () => {
   sensorData.insertMany(sensorDataPoints);
 
     })/*
-
-//Create 3 new booleans on user data to track if they have been alerted for trips in temp, humidity and soil moisture 
-//Then for user alerts create long lived process which pulls the most recent sensor data for the user (every 10 minutes) compare data with prefered ranges 
-//If value is outside of range (send email to user with the event, and push new event object in users data) if user has not been alerted for this value in the last 3 hours
-//Create front end alert component that displays the users most recent alert (timestamp for time)
-
-//Send email alert to user
-//Live feed data hack
-/*setInterval(() => {
-  User.find({}, (err, users) => {
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-    const emails = users.map(({email}) => email);
-    console.log(emails);
-    const sensorDataPoints = emails.map((email) => {
-      return {
-        email, 
-        temperature: getRandomInt(10, 45),
-        humidity: getRandomInt(0, 100),
-        moistureLevel: getRandomInt(0, 100),
-        date: new Date().getUTCDate(),
-      }
-    })
-    sensorData.insertMany(sensorDataPoints);
-    console.log("Created new sensordata")
-  })
-}, 10000); */
+--------------------------------------------------------------------------------------------------------
+*/
 
   console.log("MongoDB database now connected successfully");
 });
