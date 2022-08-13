@@ -55,7 +55,7 @@ const startAlertTask = () => {
 
       });
     });
-  }, 60000 * 1000);
+  }, 60000 * 5);
 }
 
 connection.once('open', () => { 
